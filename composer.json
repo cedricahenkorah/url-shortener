@@ -1,0 +1,17 @@
+{
+  "name": "cahenkorah/url-shortener",
+  "description": "PHP application that shortens long URL's",
+  "autoload": {
+    "psr-4": {
+      "Cahenkorah\\UrlShortener\\": "src/",
+      "Core\\": "Core/"
+    }
+  },
+  "authors": [
+    {
+      "name": "cedricahenkorah",
+      "email": "cedricahenkorah@gmail.com"
+    }
+  ],
+  "require": {}
+}
