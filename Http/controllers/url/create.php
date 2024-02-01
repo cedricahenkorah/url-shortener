@@ -7,7 +7,13 @@ $db = App::resolve(Database::class);
 
 $errors = [];
 
-$db->query("INSERT INTO urls(title, link) VALUES(:title, :link)", [
+$shortcode = generateCode(6);
+
+$domain = $_SERVER['HTTP_HOST'];
+
+$shortenedUrl = "http://$domain/$shortcode";
+
+$db->query("INSERT INTO urls(title, link, shortUrl) VALUES(:title, :link, '$shortenedUrl')", [
     'title' => $_POST['title'],
     'link' => $_POST['link']
 ]);

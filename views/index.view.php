@@ -11,7 +11,7 @@
 <body>
     <div class="flex justify-center items-center p-10 min-h-screen">
         <div class="flex flex-col">
-            <h1 class="font-bold text-center">URL shortener</h1>
+            <h1 class="font-bold text-center">URL shortener <?= $_SERVER['HTTP_HOST'] ?></h1>
 
             <div class="rounded-2xl shadow-lg">
                 <div class="px-10 py-5">
