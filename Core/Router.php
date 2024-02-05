@@ -46,8 +46,34 @@ class Router
     public function route($url, $method)
     {
         foreach ($this->routes as $route) {
-            if ($route['uri'] === $url && $route['method'] === strtoupper($method)) {
-                return require base_path('Http/controllers/' . $route['controller']);
+            // Explode the route URI and URL to compare each segment
+            $routeSegments = explode('/', $route['uri']);
+            $urlSegments = explode('/', $url);
+
+            // Check if the number of segments match
+            if (count($routeSegments) === count($urlSegments) && $route['method'] === strtoupper($method)) {
+                $parameters = [];
+
+                // Check if each segment matches or is a dynamic parameter
+                $matched = true;
+                for ($i = 0; $i < count($routeSegments); $i++) {
+                    if ($routeSegments[$i] !== $urlSegments[$i] && strpos($routeSegments[$i], '{') !== false && strpos($routeSegments[$i], '}') !== false) {
+                        // This is a dynamic parameter
+                        $parameterName = trim($routeSegments[$i], '{}');
+                        $parameters[$parameterName] = $urlSegments[$i];
+                    } elseif ($routeSegments[$i] !== $urlSegments[$i]) {
+                        // If the segments don't match and it's not a dynamic parameter
+                        $matched = false;
+                        break;
+                    }
+                }
+
+                if ($matched) {
+                    // If the route matches, pass parameters to the controller
+                    $controllerPath = base_path('Http/controllers/' . $route['controller']);
+                    $controller = require $controllerPath;
+                    return $controller($parameters);
+                }
             }
         }
     }
