@@ -72,7 +72,7 @@ class Router
                     // If the route matches, pass parameters to the controller
                     $controllerPath = base_path('Http/controllers/' . $route['controller']);
                     $controller = require $controllerPath;
-                    return $controller($parameters);
+                    return $controller;
                 }
             }
         }
