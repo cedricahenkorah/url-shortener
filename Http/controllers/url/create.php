@@ -13,11 +13,16 @@ $domain = $_SERVER['HTTP_HOST'];
 
 $shortenedUrl = "http://$domain/$shortcode";
 
-$db->query("INSERT INTO urls(title, link, shortUrl) VALUES(:title, :link, :shortUrl)", [
-    'title' => $_POST['title'],
+$db->query("INSERT INTO urls(link, shortUrl) VALUES(:link, :shortUrl)", [
     'link' => $_POST['link'],
     'shortUrl' => $shortenedUrl
 ]);
+
+$_SESSION['url'] = [
+    'link' => $shortenedUrl,
+];
+
+session_regenerate_id();
 
 // redirect back to home page
 header('location: /');
