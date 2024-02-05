@@ -26,6 +26,7 @@ cd url-shortener
 ```
 
 3. **Set up your sql db and config.php**
+
    Configure the db in the config.php
 
 ```shell
