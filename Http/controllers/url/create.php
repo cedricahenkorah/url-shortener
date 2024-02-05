@@ -13,9 +13,10 @@ $domain = $_SERVER['HTTP_HOST'];
 
 $shortenedUrl = "http://$domain/$shortcode";
 
-$db->query("INSERT INTO urls(title, link, shortUrl) VALUES(:title, :link, '$shortenedUrl')", [
+$db->query("INSERT INTO urls(title, link, shortUrl) VALUES(:title, :link, :shortUrl)", [
     'title' => $_POST['title'],
-    'link' => $_POST['link']
+    'link' => $_POST['link'],
+    'shortUrl' => $shortenedUrl
 ]);
 
 // redirect back to home page
