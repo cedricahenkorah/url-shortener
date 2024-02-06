@@ -11,8 +11,6 @@ $shortenedUrl = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 // find the url in the database
 $originalUrl = $db->query("SELECT link FROM urls WHERE shortUrl = :shortenedUrl", [':shortenedUrl' => $shortenedUrl])->findOrFail();
 
-echo ($originalUrl['link']);
-
 if ($originalUrl['link']) {
     // redirect to the original url
     header("Location: {$originalUrl['link']}");
