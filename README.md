@@ -4,6 +4,8 @@
 
 A simple php project to shorten long URLs, to make it easier to share and manage
 
+![Screenshot of the landing page](/landingpagess.jpeg)
+
 ## Features
 
 - Shorten long URLs into short and manageable versions
