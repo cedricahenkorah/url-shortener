@@ -10,8 +10,6 @@ $dotenv->load(__DIR__ . "/.env");
 
 $container = new Container();
 
-
-
 $username = $_ENV['username'];
 $password = $_ENV['password'];
 
