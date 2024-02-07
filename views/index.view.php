@@ -47,7 +47,7 @@
                             </button>
                         </div>
                     </form>
-
+                    ;
                     <div class="mt-10 font-bold italic">
                         <?php if (isset($_SESSION['url']['link'])) : ?>
                             <?= $_SESSION['url']['link'] ?>

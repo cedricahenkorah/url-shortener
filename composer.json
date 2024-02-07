@@ -12,5 +12,8 @@
       "name": "cedricahenkorah",
       "email": "cedricahenkorah@gmail.com"
     }
-  ]
+  ],
+  "require": {
+    "symfony/dotenv": "^6.4"
+  }
 }
