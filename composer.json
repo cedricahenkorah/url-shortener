@@ -13,7 +13,7 @@
       "email": "cedricahenkorah@gmail.com"
     }
   ],
-  "require": {
+  "require-dev": {
     "symfony/dotenv": "^6.4"
   }
 }
