@@ -47,11 +47,16 @@
                             </button>
                         </div>
                     </form>
-                    ;
+
                     <div class="mt-10 font-bold italic">
                         <?php if (isset($_SESSION['url']['link'])) : ?>
                             <?= $_SESSION['url']['link'] ?>
                             <?php unset($_SESSION['url']); ?>
+                        <?php endif; ?>
+
+                        <?php if (isset($_SESSION['error'])) : ?>
+                            <?= $_SESSION['error'] ?>
+                            <?php unset($_SESSION['error']); ?>
                         <?php endif; ?>
                     </div>
                 </div>
