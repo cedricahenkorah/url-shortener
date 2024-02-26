@@ -5,19 +5,24 @@ use Core\Container;
 use Core\Database;
 use Symfony\Component\Dotenv\Dotenv;
 
-$dotenv = new Dotenv();
-$dotenv->load(__DIR__ . "/.env");
+if (getenv('RAILWAY_ENVIRONMENT') === 'production') {
+    // do not load .env file
+} else {
+    $dotenv = new Dotenv();
+    $dotenv->load(__DIR__ . "/.env");
+}
+
 
 $container = new Container();
 
-$username = $_ENV['username'];
-$password = $_ENV['password'];
+$username = $_ENV['username'] ?? null;
+$password = $_ENV['password'] ?? null;
 
 // bind the db to the container
-$container->bind('Core\Database', function () {
+$container->bind('Core\Database', function () use ($username, $password) {
     $config = require base_path('config.php');
-    $username = $_ENV['username'];
-    $password = $_ENV['password'];
+    $username = $username ?? $_ENV['username'];
+    $password = $password ?? $_ENV['password'];
 
     return new Database($config['database'], $username, $password);
 });

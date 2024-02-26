@@ -33,7 +33,7 @@
                         </span>
                     </p>
 
-                    <form action="/shorten" method="post" class="relative mt-10">
+                    <form action="/" method="post" class="relative mt-10">
                         <div class="absolute transitiona-all duration-1000 opacity-30 inset-0 bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg filter group-hover:opacity-100 group-hover:duration-200"></div>
                         <div class="relative space-y-4 sm:flex sm:space-y-0 sm:items-end">
                             <div class="flex-1">
@@ -47,11 +47,16 @@
                             </button>
                         </div>
                     </form>
-                    ;
+
                     <div class="mt-10 font-bold italic">
                         <?php if (isset($_SESSION['url']['link'])) : ?>
                             <?= $_SESSION['url']['link'] ?>
                             <?php unset($_SESSION['url']); ?>
+                        <?php endif; ?>
+
+                        <?php if (isset($_SESSION['error'])) : ?>
+                            <?= $_SESSION['error'] ?>
+                            <?php unset($_SESSION['error']); ?>
                         <?php endif; ?>
                     </div>
                 </div>
