@@ -6,7 +6,7 @@ use Core\Database;
 $db = App::resolve(Database::class);
 
 // get the short url 
-$shortenedUrl = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$shortenedUrl =  $_SERVER['REQUEST_URI'];
 
 // find the url in the database
 $originalUrl = $db->query("SELECT link FROM urls WHERE shortUrl = :shortenedUrl", [':shortenedUrl' => $shortenedUrl])->findOrFail();
