@@ -30,6 +30,10 @@ cd url-shortener
 3. **Set up your sqlite db**
 
 ```shell
+cd database
+```
+
+```shell
 touch database.sqlite
 ```
 
