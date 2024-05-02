@@ -27,26 +27,42 @@ git clone https://github.com/cedricahenkorah/url-shortener.git
 cd url-shortener
 ```
 
-3. **Set up your sql db and config.php**
-
-   Configure the db in the config.php
+3. **Set up your sqlite db**
 
 ```shell
-<?php
-
-return $config = [
-    'database' => [
-        'host' => '',
-        'port' => ,
-        'dbname' => '',
-        'charset' => ''
-    ]
-];
-
+touch database.sqlite
 ```
 
-4. **Start your web server**
+4. **Create a copy of the .env file**
 
 ```shell
-php -S localhost:[portnumber]
+cp .env.example .env
 ```
+
+5. **Install composer dependencies**
+
+```shell
+composer install
+```
+
+6. **Generate a secure key for your application**
+
+```shell
+php artisan key:generate
+```
+
+7. **Run the migrations**
+
+```shell
+php artisan migrate
+```
+
+8. **Start your web server**
+
+```shell
+php artisan serve
+```
+
+9. **Access the application**
+
+Navigate to http://localhost:8000 (or the URL specified in the artisan serve command)
