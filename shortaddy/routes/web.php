@@ -8,4 +8,4 @@ Route::get('/', function () {
 });
 
 Route::resource('urls', UrlController::class)
-    ->only(['index']);
+    ->only(['index', 'store']);

@@ -3,10 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Url;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UrlController extends Controller
 {
+
+    public function generateCode($length = 6)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $randomString;
+    }
+
+
     /**
      * Display a listing of the resource.
      */
@@ -20,15 +37,37 @@ class UrlController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $shortcode = $this->generateCode(6);
+
+        $domain = $_SERVER['HTTP_HOST'];
+
+        $validated = $request->validate([
+            'link' => 'required|url'
+        ]);
+
+        $originalUrl = $validated['link'];
+
+        if (!$validated) return redirect(route('welcome'));
+
+        $shortenedUrl = "http://$domain/$shortcode";
+
+        $url = Url::create([
+            'link' => $originalUrl,
+            'shortUrl' => $shortenedUrl,
+            'code' => $shortcode
+        ]);
+
+        Session::put('url', ['link' => $shortenedUrl]);
+
+        return redirect('/');
+    }
     }
 
     /**
