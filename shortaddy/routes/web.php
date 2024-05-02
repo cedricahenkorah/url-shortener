@@ -7,5 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/{code}', [UrlController::class, 'redirect']);
+
 Route::resource('urls', UrlController::class)
     ->only(['index', 'store']);

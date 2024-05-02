@@ -68,6 +68,16 @@ class UrlController extends Controller
 
         return redirect('/');
     }
+
+    public function redirect($code)
+    {
+        $shortenedUrl = Url::where('code', $code)->first();
+
+        if ($shortenedUrl) {
+            return redirect($shortenedUrl->link);
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
